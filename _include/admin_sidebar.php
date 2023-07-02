@@ -12,7 +12,7 @@
                                     <span> Dashboard </span></a>
                             </li>
                             <li>
-                                <a href="page2.php" class="waves-effect"><i class="fa fa-users"></i>
+                                <a href="user.php" class="waves-effect"><i class="fa fa-users"></i>
                                     <span> Users </span></a>
                             </li>
                             <li>

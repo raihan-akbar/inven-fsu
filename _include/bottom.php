@@ -7,7 +7,7 @@
         <script src="assets/js/waves.js"></script>
         <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
-        <script src="../plugins/switchery/switchery.min.js"></script>
+        <script src="assets/plugins/switchery/switchery.min.js"></script>
 
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
