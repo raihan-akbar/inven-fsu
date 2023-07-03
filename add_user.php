@@ -34,29 +34,28 @@
                   </div>
                   <!-- end row -->
                   <div class="p-20">
-                     <form action="add_user" method="post" data-parsley-validate novalidate>
+                     <form id="add_form" action="add_user" method="post" data-parsley-validate novalidate>
                         <div class="form-group">
-                           <label for="userName">Register</label>
+                           <label>Register</label>
                            <input type="date" name="name" disabled="disabled" value="<?php echo date('Y-m-d') ?>" parsley-trigger="change" required placeholder="Username" class="form-control">
                         </div>
                         <div class="form-group">
-                           <label for="userName">Username <span class="text-danger">*</span><span class="text-default" id="result"></span></label>
-                           <input type="text" name="name" id="username" onkeyup="charCount(this);" parsley-trigger="change" required placeholder="Enter user name" class="form-control" id="username">
-                           <p id="notice">0 Characters</p>
-                        </div>
-                        <div class="form-group">
-                           <label for="userName">Nama Lengkap<span class="text-danger">*</span></label>
+                           <label>Nama Lengkap<span class="text-danger">*</span></label>
                            <input type="text" name="name" parsley-trigger="change" required placeholder="Masukan Nama Lengkap" class="form-control">
                         </div>
                         <div class="form-group">
-                           <label for="userName">Alamat Email<span class="text-danger">*</span></label>
-                           <input type="text" name="name" value="<?php echo $data['email']; ?>" parsley-trigger="change" required placeholder="Enter user name" class="form-control">
+                           <label>Username <span class="text-danger">*</span><span class="text-default" id="result"></span></label>
+                           <input type="text" name="name" id="username" parsley-trigger="change" required placeholder="Set Username" class="form-control" id="username">
                         </div>
                         <div class="form-group">
-                           <label for="userName">Role<span class="text-danger">*</span></label>
+                           <label>Email <span class="text-danger">*</span><span class="text-default" id="result2"></span></label>
+                           <input type="email" name="email" id="email" parsley-trigger="change" required placeholder="Enter user name" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                           <label>Role<span class="text-danger">*</span></label>
                            <select class="form-control">
                               <option class="bg-dark" disabled="disabled" selected="selected">
-                                 Pilih Role
+                                  - - Pilih Role
                               </option>
                               <option value="Admin">
                                  Admin
@@ -67,12 +66,12 @@
                            </select>
                         </div>
                         <div class="form-group">
-                           <label for="userName">Set New Password<span class="text-danger">*</span></label>
-                           <input type="password" name="name" parsley-trigger="change" required placeholder="Set New Password" class="form-control">
+                           <label>Set New Password<span class="text-danger">*</span></label>
+                           <input type="password" name="password" id="pass1" parsley-trigger="change" required placeholder="Password" class="form-control">
                         </div>
                         <div class="form-group">
-                           <label for="userName">New Password Cofirmation<span class="text-danger">*</span></label>
-                           <input type="password" name="name" parsley-trigger="change" required placeholder="New Password Confirmation" class="form-control">
+                           <label>New Password Cofirmation<span class="text-danger">*</span></label>
+                           <input type="password" name="pass2" data-parsley-equalto="#pass1" id="pass2" parsley-trigger="change" required placeholder="Password Confirmation" class="form-control">
                         </div>
                         <div class="form-group text-right m-b-0">
                            <a href="user.php" name="delete" class="text-primary waves-effect waves-light" type="submit">
@@ -101,6 +100,8 @@
          var resizefunc = [];
       </script>
       <?php include '_include/bottom.php' ?>
+      <script type="text/javascript" src="assets/plugins/parsleyjs/parsley.min.js"></script>
+
       <script type="text/javascript">
          $(document).ready(function() {
              $('#username').keyup(function() {
@@ -116,12 +117,14 @@
                             success: function(hasil) {
                                 if(hasil == 1) {
                                     $('#result').text(' | Tidak Tersedia');
-                                    document.getElementById('result').style.color = 'Orange'
+                                    document.getElementById('result').style.color = 'Orange';
+                                    document.getElementById('username').style.borderColor = "red";
                                     document.getElementById("add").disabled = true;
                                 }
                                 else {
                                     $('#result').text(' | Tersedia');
-                                    document.getElementById('result').style.color = 'green'
+                                    document.getElementById('result').style.color = 'green';
+                                    document.getElementById('username').style.borderColor = "#e3e3e3";
                                     document.getElementById("add").disabled = false;
 
                                 }
@@ -131,5 +134,21 @@
              });
          });
          </script>
+
+      <script type="text/javascript">
+         $(document).ready(function() {
+            $('form').parsley();
+         });
+            $(function () {
+                $('#add_form').parsley().on('field:validated', function () {
+                    var ok = $('.parsley-error').length === 0;
+                    $('.alert-info').toggleClass('hidden', !ok);
+                    $('.alert-warning').toggleClass('hidden', ok);
+                })
+                .on('form:submit', function () {
+                    return false;
+                });
+            });
+      </script>
    </body>
 </html>
