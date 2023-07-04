@@ -127,7 +127,16 @@ if (isset($_POST['add'])) {
              $('#username').keyup(function() {
                  var uname = $('#username').val();
                  if(uname == 0) {
-                     $('#result').text('');
+                     $('#result').text(' | Tidak Boleh Kosong');
+                     document.getElementById('result').style.color = 'Orange';
+                     document.getElementById('username').style.borderColor = "red";
+                     document.getElementById("add").disabled = true;
+                 }
+                 else if(uname > 8) {
+                     $('#result').text(' | Min 8 Karakter');
+                     document.getElementById('result').style.color = 'Orange';
+                     document.getElementById('username').style.borderColor = "red";
+                     document.getElementById("add").disabled = true;
                  }
                  else {
                      $.ajax({
