@@ -18,9 +18,7 @@
 
         <!-- Begin page -->
         <div id="wrapper">
-
         <?php include '_include/navbar.php'; ?>
-            
         <?php include '_include/admin_sidebar.php'; ?>
 
             <!-- ============================================================== -->
@@ -79,7 +77,7 @@
                                         <tbody>
                                         <?php
                                         include 'config.php';
-                                        $query = mysqli_query($conn, 'SELECT * FROM user');
+                                        $query = mysqli_query($conn, 'SELECT * FROM user ORDER BY id_user ASC');
                                         $result = array(); 
 						                while ($data = mysqli_fetch_array($query)){$result[]=$data;}
 						                foreach ($result as $i) {

@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_GET['con'])){
 		if($_GET['con'] == "fail"){
 			$color = 'danger';

@@ -1,4 +1,24 @@
 <?php include 'check.php'; ?>
+<?php
+include 'config.php';
+if (isset($_POST['add'])) {
+    $name = $_POST['name'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+    $password = $_POST['password'];
+    $register = date('Y-m-d');
+
+   $sql = "INSERT INTO user VALUES('','$name','$email','$username','$password','$role','$register')";
+
+   if ($conn->query($sql) === TRUE) {
+
+      }else {
+
+      }
+}
+
+?>
 <!DOCTYPE html>
 <html>
    <head>
@@ -19,7 +39,7 @@
                   <div class="row">
                      <div class="col-xs-12">
                         <div class="page-title-box">
-                           <h4 class="page-title">Add New User Account <i class="mdi mdi-plus"></i> </h4>
+                           <h4 class="page-title">Add New User Account<i class="mdi mdi-plus"></i> </h4>
                            <ol class="breadcrumb p-0 m-0">
                               <li>
                                  <a href="user.php">User</a>
@@ -34,10 +54,11 @@
                   </div>
                   <!-- end row -->
                   <div class="p-20">
-                     <form id="add_form" action="add_user" method="post" data-parsley-validate novalidate>
+                     <!-- <form id="add_form" method="POST" data-parsley-validate novalidate> -->
+                     <form method="POST" data-parsley-validate novalidate>
                         <div class="form-group">
                            <label>Register</label>
-                           <input type="date" name="name" disabled="disabled" value="<?php echo date('Y-m-d') ?>" parsley-trigger="change" required placeholder="Username" class="form-control">
+                           <input type="text" name="register" disabled="disabled" value="<?php echo date('d, F Y') ?>" parsley-trigger="change" required placeholder="Username" class="form-control">
                         </div>
                         <div class="form-group">
                            <label>Nama Lengkap<span class="text-danger">*</span></label>
@@ -45,7 +66,7 @@
                         </div>
                         <div class="form-group">
                            <label>Username <span class="text-danger">*</span><span class="text-default" id="result"></span></label>
-                           <input type="text" name="name" id="username" parsley-trigger="change" required placeholder="Set Username" class="form-control" id="username">
+                           <input type="text" name="username" id="username" parsley-trigger="change" required placeholder="Set Username" class="form-control" id="username">
                         </div>
                         <div class="form-group">
                            <label>Email <span class="text-danger">*</span><span class="text-default" id="result2"></span></label>
@@ -53,7 +74,7 @@
                         </div>
                         <div class="form-group">
                            <label>Role<span class="text-danger">*</span></label>
-                           <select class="form-control">
+                           <select class="form-control" name="role">
                               <option class="bg-dark" disabled="disabled" selected="selected">
                                   - - Pilih Role
                               </option>
@@ -74,12 +95,11 @@
                            <input type="password" name="pass2" data-parsley-equalto="#pass1" id="pass2" parsley-trigger="change" required placeholder="Password Confirmation" class="form-control">
                         </div>
                         <div class="form-group text-right m-b-0">
-                           <a href="user.php" name="delete" class="text-primary waves-effect waves-light" type="submit">
-                           <i class="mdi mdi-chevron-left"></i> Back to User
+                           <a href="user.php" name="delete" class="text-primary waves-effect waves-light">
+                           Back to User List
                            </a>
-                           <button type="submit" name="add" id="add" class="btn btn-success waves-effect m-l-5" disabled>
-                           Add User <i class=" mdi mdi-check"></i>
-                           </button>
+                           <button type="submit" name="add" class="btn btn-primary waves-effect m-l-5">
+                           Add User Account <i class=" mdi mdi-plus"></i>
                         </div>
                      </form>
                   </div>
