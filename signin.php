@@ -115,14 +115,14 @@ if (isset($_POST['submit'])) {
                                             <span><img src="assets/images/logo.png" alt="" height="36"></span>
                                         </a>
                                     </h2> -->
-                                    <h2 class="font-bold text-white m-b-0">Welcome!</h2>
+                                    <h3 class="font-bold text-white m-b-0">CV. Famili Sejahtera Utama</h3>
                                 </div>
                                 <div class="bg-white account-content">
                                     <form class="form-horizontal" method="POST">
                                     	<p class="text-center text-<?php echo $color;?>"><i class="text-white">.</i><b><?php echo $flash; ?></b></p>
                                         <div class="form-group ">
                                             <div class="col-xs-12">
-                                            	<label>Email/Username</label>
+                                            	<label>Username</label>
                                                 <input class="form-control" type="text" required="" placeholder="Username" name="username">
                                             </div>
                                         </div>

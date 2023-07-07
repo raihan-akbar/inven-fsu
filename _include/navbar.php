@@ -3,7 +3,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index.html" class="logo"><span>Name<span> Here</span></span><i class="mdi mdi-layers"></i></a>
+                    <a href="index.html" class="logo"><span>CV<span> Famili</span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo -->
                     <!--<a href="index.html" class="logo">-->
                         <!--<span>-->

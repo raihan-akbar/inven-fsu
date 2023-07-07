@@ -68,7 +68,6 @@
                                             <th class="text-center"></th>
                                             <th>Nama</th>
                                             <th>Username</th>
-                                            <th>Email</th>
                                             <th>Terdaftar</th>
                                             <th>Role</th>
                                             <th class="text-center"><i class="fa fa-cog"></i></th>
@@ -87,7 +86,6 @@
 											<td class="text-center"><?php echo $no ?></td>
 											<td><?php echo $i['name']?></td>
 											<td><?php echo $i['username']?></td>
-											<td><?php echo $i['email']?></td>
 											<td><?php echo $i['register']?></td>
 											<td><?php echo $i['role']?></td>
 											<td class="text-center"><a href="profile.php?acc=<?php echo $i['username'] ?>">Settings <i class="mdi mdi-chevron-right"></i></a></td>
