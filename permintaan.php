@@ -58,18 +58,20 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center" width="1px">No</th>
+                                            <th>Kepala Proyek</th>
                                             <th>Tanggal Permintaan</th>
                                             <th>Alat</th>
                                             <th>Jumlah Alat</th>
                                             <th>Bahan</th>
                                             <th>Jumlah Bahan</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-center"><i class="fa fa-cog"></i></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
                                         include 'config.php';
-                                        $query = mysqli_query($conn, 'SELECT * FROM `permintaan`,`detail_permintaan`,`alat`,`detail_alat` WHERE permintaan.id_permintaan = detail_permintaan.id_permintaan AND alat.id_alat=detail_alat.id_alat;');
+                                        $query = mysqli_query($conn, 'SELECT * FROM permintaan,detail_permintaan,alat,detail_alat,bahan,detail_bahan,user WHERE permintaan.id_permintaan=detail_permintaan.id_permintaan AND alat.id_alat=detail_permintaan.id_alat AND bahan.id_bahan=detail_permintaan.id_bahan AND bahan.id_bahan=detail_bahan.id_bahan AND alat.id_alat=detail_alat.id_alat AND user.id_user=detail_permintaan.id_user;');
                                         $result = array(); 
 						                while ($data = mysqli_fetch_array($query)){$result[]=$data;}
 						                foreach ($result as $i) {
@@ -77,11 +79,13 @@
 										?>
 										<tr>
 											<td class="text-center"><?php echo $no ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $i['name'] ?></td>
+                                            <td><?php echo $i['tgl_permintaan'] ?></td>
+                                            <td><?php echo $i['nama_alat'] ?></td>
+                                            <td><?php echo $i['jumlah_alat'].' '.$i['unit_alat'] ?></td>
+                                            <td><?php echo $i['nama_bahan'] ?></td>
+                                            <td><?php echo $i['jumlah_bahan'].' '.$i['unit_bahan'] ?></td>
+                                            <td class="text-center font-bold"><?php echo $i['status'] ?></td>
 											<td class="text-center"><a href="profile.php?acc=<?php echo $i['username'] ?>">Details <i class="mdi mdi-arrow-top-right"></i></a></td>
                                         </tr>
 										<?php } ?>

@@ -4,15 +4,14 @@ include 'config.php';
 if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $username = $_POST['username'];
-    $email = $_POST['email'];
     $role = $_POST['role'];
     $password = $_POST['password'];
     $register = date('Y-m-d');
 
-   $sql = "INSERT INTO user VALUES(NULL,'$name','$email','$username','$password','$role','$register')";
+   $sql = "INSERT INTO user VALUES(NULL,'$name','$username','$password','$role','$register')";
 
    if ($conn->query($sql) === TRUE) {
-      header("Location:success");
+      header("Location:user.php");
       }else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
       header("Location:mysqli_error($conn)");
@@ -68,10 +67,6 @@ if (isset($_POST['add'])) {
                         <div class="form-group">
                            <label>Username <span class="text-danger">*</span><span class="text-default" id="result"></span></label>
                            <input type="text" name="username" id="username" parsley-trigger="change" required placeholder="Set Username" class="form-control" id="username">
-                        </div>
-                        <div class="form-group">
-                           <label>Email <span class="text-danger">*</span><span class="text-default" id="result2"></span></label>
-                           <input type="email" name="email" id="email" parsley-trigger="change" required placeholder="Enter user name" class="form-control" id="username">
                         </div>
                         <div class="form-group">
                            <label>Role<span class="text-danger">*</span></label>

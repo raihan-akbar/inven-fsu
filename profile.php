@@ -62,10 +62,6 @@
                            <input type="text" name="name" value="<?php echo $data['name']; ?>" parsley-trigger="change" required placeholder="Enter user name" class="form-control" id="userName">
                         </div>
                         <div class="form-group">
-                           <label for="userName">Email Address<span class="text-danger">*</span></label>
-                           <input type="text" name="name" value="<?php echo $data['email']; ?>" parsley-trigger="change" required placeholder="Enter user name" class="form-control" id="userName">
-                        </div>
-                        <div class="form-group">
                            <label for="userName">Role<span class="text-danger">*</span></label>
                            <select class="form-control">
                               <option class="bg-dark" disabled="disabled" selected="selected" value="<?php echo $data['role']; ?>">

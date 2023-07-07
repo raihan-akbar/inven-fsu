@@ -21,44 +21,12 @@ if (isset($_POST['add_alat'])) {
 
         $insert_detail_alat = "INSERT INTO detail_alat VALUES(NULL,'$id_alat','$nama_alat','$unit_alat','Layak')";
         if ($conn->query($insert_detail_alat) === TRUE) {
-            header('Location:persediaan.php?insert=11');
+            header('Location:alat.php?insert=11');
         }else{
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            header('Location:persediaan.php?insert=10');
+            header('Location:alat.php');
         }
     }else{
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        header('Location:persediaan.php?insert=01');
-
-    }
-
-}
-
-if (isset($_POST['add_bahan'])) {
-    $nama_bahan = $_POST['nama_bahan'];
-    $stock_bahan = $_POST['stock_bahan'];
-    $unit_bahan = $_POST['unit_bahan'];
-
-    $insert_bahan = "INSERT INTO bahan VALUES(NULL,'$nama_bahan','$stock_bahan')";
-
-    if ($conn->query($insert_bahan) === TRUE) {
-        $get_id_bahan = "SELECT * FROM bahan ORDER BY id_bahan DESC LIMIT 1";
-        $result = mysqli_query($conn, $get_id_bahan);
-        if ($result->num_rows == 0) {
-            $id_bahan = 1;
-        }else{
-            $row = mysqli_fetch_assoc($result);
-            $id_bahan = $row['id_bahan'];
-        }
-
-        $insert_detail_bahan = "INSERT INTO detail_bahan VALUES(NULL,'$id_bahan','$nama_bahan','$unit_bahan')";
-        if ($conn->query($insert_detail_bahan) === TRUE) {
-            header('Location:persediaan.php?insert=11');
-        }else{
-            header('Location:persediaan.php?insert=10');
-        }
-    }else{
-        header('Location:persediaan.php?insert=01');
+        header('Location:alat.php?insert=01');
 
     }
 
@@ -116,7 +84,7 @@ if (isset($_POST['add_bahan'])) {
                             <div class="col-sm-12">
                                 <div class="card-box">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="card-box table-responsive">
@@ -167,51 +135,7 @@ if (isset($_POST['add_bahan'])) {
                                             </div>
                                             <!-- end row -->
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="card-box table-responsive">
-                                                    <div class="col-md-12 text-right">
-                                                        <button data-toggle="modal" data-target="#add-bahan-modal" class="btn btn-primary btn-sm">Tambah Bahan <i class="mdi mdi-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <h4 class="m-t-0 header-title"><b>List Bahan</b></h4>
-                                                    <p class="text-muted font-13 m-b-30">
-                                                        Daftar List Semua Bahan.
-                                                    </p>
-                                                    <table id="datatable-responsive-2"
-                                                           class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-                                                           width="100%">
-                                                        <thead>
-                                                        <tr>
-                                                            <th class="text-center" width="1px">No</th>
-                                                            <th>Nama Bahan</th>
-                                                            <th>Jumlah Stock</th>
-                                                            <th>Unit</th>
-                                                            <th class="text-center"><i class="fa fa-cog"></i></th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <?php
-                                                            include 'config.php';
-                                                            $query = mysqli_query($conn, 'SELECT * FROM bahan,detail_bahan WHERE bahan.id_bahan=detail_bahan.id_bahan ORDER BY bahan.id_bahan ASC');
-                                                            $result = array(); 
-                                                            while ($data = mysqli_fetch_array($query)){$result[]=$data;}
-                                                            foreach ($result as $i) {
-                                                                $no++ ;
-                                                            ?>
-                                                        <tr>
-                                                            <td class="text-center"><?php echo $no ?></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td class="text-center"><a href="profile.php?acc=<?php echo $i['username'] ?>">Details <i class="mdi mdi-arrow-top-right"></i></a></td>
-                                                        </tr>
-                                                        <?php } ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                 </div> <!-- end card-box -->
                             </div> <!-- end col -->
                         </div>
@@ -336,48 +260,6 @@ if (isset($_POST['add_bahan'])) {
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                 <button type="submit" name="add_alat" class="btn btn-primary waves-effect waves-light">Tambahkan <i class="mdi mdi-plus"></i> </button>
-            </div>
-        </div>
-        </form>
-    </div>
-</div>
-<!-- /.modal -->
-</div>
-
-<div id="add-bahan-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Tambah Item Bahan <i class="mdi mdi-plus"></i> </h4>
-            </div>
-            <form method="POST" data-parsley-validate novalidate>
-            <div class="modal-body">
-                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-3" class="control-label">Nama Bahan</label>
-                            <input type="text" class="form-control" id="field-3" placeholder="Masukan Nama Bahan" required name="nama_bahan"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label">Jumlah Stock Bahan</label>
-                            <input type="number" min="0" class="form-control" id="field-1" placeholder="Jumlah Stock" required name="stock_bahan"/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-2" class="control-label">Unit</label>
-                            <input type="text" class="form-control" id="field-2" placeholder="Satuan Unit Stock" required name="unit_bahan"/>
-                        </div>
-                    </div>
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                <button type="submit" name="add_bahan" class="btn btn-primary waves-effect waves-light">Tambahkan <i class="mdi mdi-plus"></i> </button>
             </div>
         </div>
         </form>
