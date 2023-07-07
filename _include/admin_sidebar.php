@@ -16,7 +16,7 @@
                                     <span> Users </span></a>
                             </li>
                             <li>
-                                <a href="page3.php" class="waves-effect"><i class="fa fa-edit"></i>
+                                <a href="permintaan.php" class="waves-effect"><i class="fa fa-edit"></i>
                                     <span> Permintaan </span></a>
                             </li>
                             <li>

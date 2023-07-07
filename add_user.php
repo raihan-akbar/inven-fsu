@@ -9,12 +9,13 @@ if (isset($_POST['add'])) {
     $password = $_POST['password'];
     $register = date('Y-m-d');
 
-   $sql = "INSERT INTO user VALUES('','$name','$email','$username','$password','$role','$register')";
+   $sql = "INSERT INTO user VALUES(NULL,'$name','$email','$username','$password','$role','$register')";
 
    if ($conn->query($sql) === TRUE) {
-
+      header("Location:success");
       }else {
-
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      header("Location:mysqli_error($conn)");
       }
 }
 
@@ -126,14 +127,8 @@ if (isset($_POST['add'])) {
          $(document).ready(function() {
              $('#username').keyup(function() {
                  var uname = $('#username').val();
-                 if(uname == 0) {
+                 if(uname < 8) {
                      $('#result').text(' | Tidak Boleh Kosong');
-                     document.getElementById('result').style.color = 'Orange';
-                     document.getElementById('username').style.borderColor = "red";
-                     document.getElementById("add").disabled = true;
-                 }
-                 else if(uname > 8) {
-                     $('#result').text(' | Min 8 Karakter');
                      document.getElementById('result').style.color = 'Orange';
                      document.getElementById('username').style.borderColor = "red";
                      document.getElementById("add").disabled = true;
